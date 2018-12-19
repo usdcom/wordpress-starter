@@ -1,0 +1,32 @@
+version: "3"
+services:
+    wordpress:
+        image: usdcom/wordpress
+
+        # required for mounting bindfs
+        cap_add:
+            - SYS_ADMIN
+        devices:
+            - /dev/fuse
+        # required on certain cloud hosts
+        security_opt:
+            - apparmor:unconfined
+
+        ports:
+            - 8080:80
+            - 443:443
+        volumes:
+            - ./data:/data
+            - ./scripts:/docker-entrypoint-initwp.d
+        environment:
+            DB_HOST: 
+            DB_NAME: 
+            DB_USER: 
+            DB_PASS: 
+            IAM_KEY: 
+            IAM_PASS: 
+            SITE_HOME: 
+            SITE_URL: 
+
+volumes:
+    data:
