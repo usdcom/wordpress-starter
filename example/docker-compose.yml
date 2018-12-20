@@ -3,14 +3,6 @@ services:
     wordpress:
         image: usdcom/headlesswp
         restart: 'always'
-        # required for mounting bindfs
-        cap_add:
-            - SYS_ADMIN
-        devices:
-            - /dev/fuse
-        # required on certain cloud hosts
-        security_opt:
-            - apparmor:unconfined
         ports:
             - 80:80
             - 443:443
