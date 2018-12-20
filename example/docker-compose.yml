@@ -2,7 +2,7 @@ version: "3"
 services:
     wordpress:
         image: usdcom/headlesswp
-
+        restart: 'always'
         # required for mounting bindfs
         cap_add:
             - SYS_ADMIN
@@ -11,9 +11,8 @@ services:
         # required on certain cloud hosts
         security_opt:
             - apparmor:unconfined
-
         ports:
-            - 8080:80
+            - 80:80
             - 443:443
         environment:
             DB_HOST: 
