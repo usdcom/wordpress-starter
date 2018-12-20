@@ -81,6 +81,6 @@ RUN useradd -ms /bin/bash -G sudo admin \
         0 > /etc/fstab
 
 USER admin
-WORKDIR /app
+WORKDIR /var/www/html
 EXPOSE 80 443
 CMD ["/run.sh"]
