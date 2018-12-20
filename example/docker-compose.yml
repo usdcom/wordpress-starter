@@ -1,7 +1,7 @@
 version: "3"
 services:
     wordpress:
-        image: usdcom/wordpress
+        image: usdcom/headlesswp
 
         # required for mounting bindfs
         cap_add:
@@ -15,9 +15,6 @@ services:
         ports:
             - 8080:80
             - 443:443
-        volumes:
-            - ./data:/data
-            - ./scripts:/docker-entrypoint-initwp.d
         environment:
             DB_HOST: 
             DB_NAME: 
@@ -27,6 +24,3 @@ services:
             IAM_PASS: 
             SITE_HOME: 
             SITE_URL: 
-
-volumes:
-    data:
