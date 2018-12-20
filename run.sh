@@ -31,6 +31,7 @@ config create:
     dbuser: ${DB_USER:-root}
     dbcharset: ${DB_CHARSET:-utf8}
     extra-php: |
+        define('FORCE_SSL_ADMIN', ${ADMIN_SSL: -false});
         define('DBI_AWS_ACCESS_KEY_ID', '${IAM_KEY: -key}');
         define('DBI_AWS_SECRET_ACCESS_KEY', '${IAM_PASS:-pass}');
         define('WP_HOME','${SITE_HOME:-localhost}');
