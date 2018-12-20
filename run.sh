@@ -59,10 +59,10 @@ config create:
     dbuser: ${DB_USER:-root}
     dbcharset: ${DB_CHARSET:-utf8}
     extra-php: |
-        define('DBI_AWS_ACCESS_KEY_ID', ${IAM_KEY: -key});
-        define('DBI_AWS_SECRET_ACCESS_KEY', ${IAM_PASS:-pass});
-        define('WP_HOME',${SITE_HOME:-localhost});
-        define('WP_SITEURL',${SITE_URL:-localhost});
+        define('DBI_AWS_ACCESS_KEY_ID', '${IAM_KEY: -key}');
+        define('DBI_AWS_SECRET_ACCESS_KEY', '${IAM_PASS:-pass}');
+        define('WP_HOME','${SITE_HOME:-localhost}');
+        define('WP_SITEURL','${SITE_URL:-localhost}');
         define('WP_DEBUG', ${WP_DEBUG:-false});
         define('WP_DEBUG_LOG', ${WP_DEBUG_LOG:-false});
         define('WP_DEBUG_DISPLAY', ${WP_DEBUG_DISPLAY:-true});
