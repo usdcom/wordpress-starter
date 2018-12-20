@@ -19,7 +19,7 @@ fi
 # -------------
 mkdir -p ~/.wp-cli
 echo -e "
-path: /app
+path: /var/www/html
 apache_modules:
     - mod_rewrite
 
@@ -59,7 +59,7 @@ rewrite structure:
 " >~/.wp-cli/config.yml
 
 # Copy plugins
-sudo git clone https://github.com/usdcom/acfp.git /app/wp-content/plugins
+sudo git clone https://github.com/usdcom/acfp.git /var/www/html/wp-content/plugins
 
 # Apache config adustments
 sudo sed -i \
@@ -151,9 +151,9 @@ init() {
         theme_deps[twentynineteen]=twentynineteen
     fi
 
-    sudo chown -R admin:admin /app
+    sudo chown -R admin:admin /var/www/html
 
-    if [[ ! -f /app/wp-settings.php ]]; then
+    if [[ ! -f /var/www/html/wp-settings.php ]]; then
         h2 'Downloading WordPress'
         wp --color core download |& logger
     fi
@@ -261,13 +261,13 @@ check_volumes() {
     if [[ ! -f ~/.dockercache ]]; then
         {
             (
-                find /app/wp-content/plugins/* \
+                find /var/www/html/wp-content/plugins/* \
                     -maxdepth 0 \
                     -type d \
                     -printf 'plugin\t%f\n' 2>/dev/null
             ) &
             (
-                find /app/wp-content/themes/* \
+                find /var/www/html/wp-content/themes/* \
                     -maxdepth 0 \
                     -type d \
                     -printf 'theme\t%f\n' 2>/dev/null
