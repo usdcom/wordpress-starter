@@ -61,7 +61,6 @@ rewrite structure:
 
 # Copy plugins
 sudo git clone https://github.com/usdcom/acfp.git /var/www/html/wp-content/plugins
-sudo sed -i '1 a if($_SERVER["HTTP_X_FORWARDED_PROTO"]=="https"){$_SERVER["HTTPS"]="on";$_SERVER["SERVER_PORT"]=443;}' /var/www/html/wp-config.php
 
 # Apache config adustments
 sudo sed -i \
@@ -76,6 +75,8 @@ main() {
 
     h2 'Configuring WordPress'
     wp --color config create --force |& logger
+    
+    sudo sed -i '1 a if($_SERVER["HTTP_X_FORWARDED_PROTO"]=="https"){$_SERVER["HTTPS"]="on";$_SERVER["SERVER_PORT"]=443;}' /var/www/html/wp-config.php
 
     h2 'Checking database'
     check_database
