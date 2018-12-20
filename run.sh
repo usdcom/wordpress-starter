@@ -31,7 +31,7 @@ config create:
     dbuser: ${DB_USER:-root}
     dbcharset: ${DB_CHARSET:-utf8}
     extra-php: |
-        define('FORCE_SSL_ADMIN', false);
+        define('FORCE_SSL_ADMIN', true);
         define('DBI_AWS_ACCESS_KEY_ID', '${IAM_KEY:-key}');
         define('DBI_AWS_SECRET_ACCESS_KEY', '${IAM_PASS:-pass}');
         define('WP_HOME','${SITE_HOME:-localhost}');
@@ -76,8 +76,6 @@ main() {
     h2 'Configuring WordPress'
     wp --color config create --force |& logger
     
-    sudo sed -i '1 a if($_SERVER["HTTP_X_FORWARDED_PROTO"]=="https"){$_SERVER["HTTPS"]="on";$_SERVER["SERVER_PORT"]=443;}' /var/www/html/wp-config.php
-
     h2 'Checking database'
     check_database
 
@@ -106,6 +104,8 @@ main() {
     fi
 
     h1 'WordPress Configuration Complete!'
+    
+    sudo sed -i '1 a if($_SERVER["HTTP_X_FORWARDED_PROTO"]=="https"){$_SERVER["HTTPS"]="on";$_SERVER["SERVER_PORT"]=443;}' /var/www/html/wp-config.php
 
     sudo rm -f /var/run/apache2/apache2.pid
     sudo apache2-foreground
