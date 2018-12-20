@@ -72,15 +72,6 @@ main() {
     h1 'Begin WordPress Installation'
     init
 
-    h2 'Waiting for MySQL to initialize...'
-    while ! mysqladmin ping \
-        --host="${DB_HOST:-db}" \
-        --user="${DB_USER:-root}" \
-        --password="${DB_PASS:-root}" \
-        --silent >/dev/null; do
-        sleep 1
-    done
-
     h2 'Configuring WordPress'
     wp --color config create --force |& logger
 
