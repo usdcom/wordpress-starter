@@ -39,6 +39,8 @@ config create:
         define('WP_DEBUG', ${WP_DEBUG:-false});
         define('WP_DEBUG_LOG', ${WP_DEBUG_LOG:-false});
         define('WP_DEBUG_DISPLAY', ${WP_DEBUG_DISPLAY:-true});
+        echo "if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)";
+        echo "$_SERVER['HTTPS']='on';";
         $(sed '1 ! s/.*/        \0/' < <(echo -e "${EXTRA_PHP:-}"))
 
 core download:
