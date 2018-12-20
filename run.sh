@@ -62,6 +62,8 @@ rewrite structure:
 # Copy plugins
 sudo git clone https://github.com/usdcom/acfp.git /var/www/html/wp-content/plugins
 
+sudo echo "if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){$_SERVER['HTTPS'] = 'on';$_SERVER['SERVER_PORT'] = 443;}" >> /var/www/html/wp-config.php
+
 # Apache config adustments
 sudo sed -i \
     -e "/^[[:blank:]]*.ServerName www.example.com/{c\\" \
