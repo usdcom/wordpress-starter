@@ -61,7 +61,6 @@ rewrite structure:
 
 # Copy plugins
 sudo git clone https://github.com/usdcom/acfp.git /var/www/html/wp-content/plugins
-sudo chown -R www-data:www-data /var/www/html/wp-content/*
 
 # Apache config adustments
 sudo sed -i \
@@ -152,6 +151,8 @@ init() {
         h2 'Downloading WordPress'
         wp --color core download |& logger
     fi
+    
+    sudo chown -R www-data:www-data /var/www/html
 }
 
 check_database() {
