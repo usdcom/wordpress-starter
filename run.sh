@@ -61,6 +61,7 @@ rewrite structure:
 
 # Copy plugins
 sudo git clone https://github.com/usdcom/acfp.git /var/www/html/wp-content/plugins
+sudo chown -R www-data:www-data /var/www/html/wp-content/*
 
 # Apache config adustments
 sudo sed -i \
