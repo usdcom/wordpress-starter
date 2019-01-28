@@ -103,6 +103,9 @@ main() {
         done
     fi
     
+    sudo mkdir /var/www/html/wp-content/themes
+    sudo mkdir /var/www/html/wp-content/themes/twentyseventeen
+    sudo mkdir /var/www/html/wp-content/themes/twentyseventeen/data
     sudo chown -R www-data:www-data /var/www/html
     sudo chmod -R 777 /var/www/html/wp-content
 
