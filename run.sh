@@ -102,6 +102,9 @@ main() {
             [[ -x $file ]] && "$file"
         done
     fi
+    
+    sudo chown -R www-data:www-data /var/www/html
+    sudo chmod -R 777 /var/www/html/wp-content
 
     h1 'WordPress Configuration Complete!'
     
@@ -152,7 +155,6 @@ init() {
         wp --color core download |& logger
     fi
     
-    sudo chown -R www-data:www-data /var/www/html
 }
 
 check_database() {
