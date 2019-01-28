@@ -85,10 +85,10 @@ main() {
     fi
 
     h2 'Checking themes'
-    check_themes
+    # check_themes
 
     h2 'Checking plugins'
-    check_plugins
+    # check_plugins
 
     h2 'Finalizing'
     if [[ "$MULTISITE" != 'true' ]]; then
@@ -104,14 +104,17 @@ main() {
     fi
     
     sudo mkdir /var/www/html/wp-content/themes
+    
     sudo mkdir /var/www/html/wp-content/themes/twentyseventeen
+    
     sudo mkdir /var/www/html/wp-content/themes/twentyseventeen/data
-    sudo chown -R www-data:www-data /var/www/html
-    sudo chmod -R 777 /var/www/html/wp-content
+    
 
     h1 'WordPress Configuration Complete!'
     
     sudo sed -i '1 a $_SERVER["HTTPS"]="on"; $_SERVER["SERVER_PORT"]=443;' /var/www/html/wp-config.php
+    
+    sudo chown -R www-data:www-data /var/www/html
 
     sudo rm -f /var/run/apache2/apache2.pid
     sudo apache2-foreground
